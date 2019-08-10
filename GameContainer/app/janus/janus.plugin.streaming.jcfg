@@ -1,0 +1,13 @@
+game-video: {
+	type = "rtp"
+	id = 1
+	description = "Game video"
+	audio = true
+	video = true
+	audioport = 5002
+	audiopt = 111
+	audiortpmap = "opus/48000/2"
+	videoport = 5004
+	videopt = 100
+	videortpmap = "VP8/90000"
+}

@@ -9,50 +9,59 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Tell the game which server uses xvfb
 ENV DISPLAY=:0
 
-################################
-# Misc. downloads and installs #
-################################
-
-# Download needed tools
+# Download base tools
 RUN apt update && apt install -y \
-    wget \
     git \
-    # Virtual screen
     xvfb \
-    # For Supervisord
-    python \
-    python-pip \
-    python3 \
-    python3-pip \
-    # Enables screen recording and streaming
-    ffmpeg \
-# Supervisord will launch NGINX and GameSupervisor
- && pip install supervisor
+    nginx \
+    pulseaudio \
+    socat \
+    alsa-utils \
+    ffmpeg
 
-###############################################################
-# Compile NGINX from sources with RTMP streaming module added #
-###############################################################
-
-# Install NGINX dependencies
+# Download and compile Janus
 RUN apt install -y \
-    # Bundles gcc and make
-    build-essential \
-    libpcre3 \
-    libpcre3-dev \
-    libssl-dev \
-    zlib1g-dev \
-# This module will enable streaming out of the container
- && git clone https://github.com/sergey-dryabzhinsky/nginx-rtmp-module.git \
-# Actually donwload NGINX sources
- && wget http://nginx.org/download/nginx-1.15.12.tar.gz \
- && tar -xf nginx-1.15.12.tar.gz \
- && cd nginx-1.15.12 \
-# Build with RTMP streaming module added
- && ./configure --with-http_ssl_module --add-module=../nginx-rtmp-module \
- && make -j 1 \
- && make install
+    libmicrohttpd-dev \
+    libjansson-dev \
+	libssl-dev \
+    libsrtp2-dev \
+    libglib2.0-dev \
+	libconfig-dev \
+    pkg-config \
+    gengetopt \
+    libtool \
+    automake \
+    gtk-doc-tools \
+    cmake \
+    # Build libnice first
+    && git clone https://gitlab.freedesktop.org/libnice/libnice.git \
+    && cd libnice \
+    # Turn it into release because cast-align warnings turn into errors on pre-release
+    && sed -i 's/^LIBNICE_RELEASE=\"no\"/LIBNICE_RELEASE=\"yes\"/' ./configure.ac \
+    && sh autogen.sh \
+    && ./configure --prefix=/usr/local \
+    && make \
+    && make install \
+    && cd .. \
+    # Build libwebsockets
+    && git clone https://libwebsockets.org/repo/libwebsockets \
+    && cd libwebsockets \
+    && mkdir build \
+    && cd build \
+    && cmake -DLWS_MAX_SMP=1 -DCMAKE_INSTALL_PREFIX:PATH=/usr -DCMAKE_C_FLAGS="-fpic" .. \
+    && make \
+    && make install \
+    && cd ../.. \
+    # Build janus
+    && git clone https://github.com/meetecho/janus-gateway.git \
+    && cd janus-gateway \
+    && sh autogen.sh \
+    && ./configure --prefix=/usr/local/janus \
+    && make \
+    && make install \
+    && make configs
 
-# Test
-RUN apt install -y firefox
+# Tests
+RUN apt install -y firefox vim
 
-CMD ["supervisord", "-c", "/opt/app/supervisord/supervisord.conf"]
+CMD ["sh /opt/app/setup.sh"]

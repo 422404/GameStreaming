@@ -1,0 +1,17 @@
+general: {
+	json = "indented"				# Whether the JSON messages should be indented (default),
+									# plain (no indentation) or compact (no indentation and no spaces)
+	ws = true						# Whether to enable the WebSockets API
+	ws_port = 8188					# WebSockets server port
+	wss = false						# Whether to enable secure WebSockets
+	ws_logging = "err,warn"			# libwebsockets debugging level as a comma separated list of things
+									# to debug, supported values: err, warn, notice, info, debug, parser,
+									# header, ext, client, latency, user, count (plus 'none' and 'all')
+}
+
+admin: {
+	admin_ws = false					# Whether to enable the Admin API WebSockets API
+}
+
+certificates: {
+}
