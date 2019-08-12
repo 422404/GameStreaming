@@ -1,0 +1,15 @@
+NGINX Proxy:
+- nginx
+
+HTTP Server:
+- pip3
+- python3
+- Django
+
+GameContainer:
+- git
+- xvfb
+- pulseaudio
+- socat
+- ffmpeg (compiled with Raspberry Pi H264 hardware acceleration)
+- janus (compiled with websockets)

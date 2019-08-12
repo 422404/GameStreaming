@@ -24,6 +24,8 @@ media: {
 
 nat: {
 	nice_debug = false
+	stun_server = "stun.l.google.com"
+	stun_port = 19302
 }
 
 plugins: {

@@ -1,0 +1,19 @@
+html {
+    height: 100vh;
+}
+
+body {
+    min-height: 100vh;
+}
+
+.page-content {
+    color: #333;
+}
+
+.page-footer {
+    text-align: center;
+    background-color: #1a1a1a;
+    border-radius: 10px 10px 0px 0px;
+    color: white;
+    padding: 5px;
+}

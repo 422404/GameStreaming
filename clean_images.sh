@@ -1,2 +1,2 @@
 #!/bin/sh
-sudo docker rmi $(docker images -f dangling=true -q)
+sudo docker rmi $(sudo docker images -f dangling=true -q)

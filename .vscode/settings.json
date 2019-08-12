@@ -1,0 +1,7 @@
+{
+    "djangointellisense.projectRoot": "./HttpServer/app/game_streaming_frontend",
+    "djangointellisense.settingsModule": "game_streaming_frontend.settings",
+    "files.associations": {
+        "*.html": "django-html"
+    }
+}
