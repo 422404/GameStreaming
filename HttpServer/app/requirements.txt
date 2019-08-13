@@ -1,0 +1,4 @@
+django
+django-extensions
+django-bootstrap4
+docker

@@ -1,5 +1,8 @@
 FROM python:3
 
-RUN pip install --no-cache-dir django django-extensions django-bootstrap4
+WORKDIR /opt/app
+COPY app/requirements.txt .
 
-CMD ["sh", "/opt/app/start.sh"]
+RUN pip install --no-cache-dir -r requirements.txt
+
+CMD ["sh", "./start.sh"]

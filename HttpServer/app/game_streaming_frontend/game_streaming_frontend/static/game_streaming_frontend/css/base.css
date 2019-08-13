@@ -3,20 +3,18 @@ html {
 }
 
 body {
+    position: relative;
     min-height: 100vh;
-}
-
-.page-content {
+    padding-bottom: 50px;
     color: #333;
 }
 
 .page-footer {
     text-align: center;
-    background-color: #1a1a1a;
-    border-radius: 10px 10px 0px 0px;
-    color: white;
-    padding: 5px;
+    padding: 0.25em;
     position: absolute;
     bottom: 0px;
     width: 100vw;
+    height: 2em;
+    font-size: 1em;
 }
