@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 
 def index(request):
-    return render(request, 'game_streaming_frontend/index.html')
+    return render(request, 'game_streaming/index.html')
 
 def register(request):
     if request.method == 'POST':
@@ -19,4 +19,4 @@ def register(request):
     else:
         form = UserCreationForm()
     
-    return render(request, 'game_streaming_frontend/register.html', {'form': form})
+    return render(request, 'game_streaming/register.html', {'form': form})

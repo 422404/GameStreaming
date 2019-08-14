@@ -1,12 +1,13 @@
-NGINX Proxy:
+NginxProxy:
 - nginx
 
-HTTP Server:
+GameStreamingFrontend:
+- nginx
 - pip3
 - python3
 - Django
 - django-extensions
-- django-bootstrap4
+- django-bootstrap4 (from repo)
 - docker-py
 
 GameContainer:

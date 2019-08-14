@@ -1,0 +1,23 @@
+{% extends 'game_streaming/base.html' %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+    <div class="container mt-5">
+        {% bootstrap_messages %}
+        <div class="jumbotron">
+        <h1 class="display-4">Your games, anywhere!</h1>
+            <p class="lead">
+                <span class="d-inline-block">Say goodbye to the old way of gaming. </span>
+                <span class="d-inline-block">The future is now!</span>
+            </p>
+            <hr class="my-4">
+            <p>
+                Play hundreds of games when you want and where you want!<br />
+                It only takes lightningly-fast FFTH and 99.9$/month! 
+                <span class="d-inline-block">(+ separate games costs)</span>
+            </p>
+            <a class="btn btn-primary btn-lg" href="#" role="button">Join us now in the game lobby!</a>
+        </div>
+    </div>
+{% endblock %}
