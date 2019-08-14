@@ -1,1 +1,10 @@
 {% extends 'game_streaming_frontend/base.html' %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+    <div class="container mt-5">
+        {% bootstrap_messages %}
+        <h2>Hello !</h2>
+    </div>
+{% endblock %}

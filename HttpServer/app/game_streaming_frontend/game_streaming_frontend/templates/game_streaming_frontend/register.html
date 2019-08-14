@@ -1,0 +1,25 @@
+{% extends 'game_streaming_frontend/base.html' %}
+
+{% load bootstrap4 %}
+
+{% block title %}GameStreaming - Register{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="mx-auto" style="max-width: 400px">
+            <div class="card">
+                <div class="card-header text-center">
+                    Welcome to <span class="text-monospace">Game::Streaming</span> !
+                </div>
+                <div class="card-body">
+                <form action="#" method="post">
+                    {% csrf_token %}
+                    {% bootstrap_form form alert_error_type='none' %}
+                    <hr>
+                    {% bootstrap_button 'Register' button_type='submit' button_class='btn-success' extra_classes='btn-block' %}
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

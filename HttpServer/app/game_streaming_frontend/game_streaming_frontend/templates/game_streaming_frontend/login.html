@@ -5,10 +5,12 @@
 {% block title %}GameStreaming - Log In{% endblock %}
 
 {% block content %}
-    <div class="container">
-        <div class="mt-5 mx-auto" style="max-width: 300px">
+    <div class="container mt-5">
+        <div class="mx-auto" style="max-width: 300px">
             <div class="card">
-                <div class="card-header text-center">Log into Game::Streamer !</div>
+                <div class="card-header text-center">
+                    Log into <span class="text-monospace">Game::Streaming</span> !
+                </div>
                 <div class="card-body">
                 <form action="#" method="post">
                     {% csrf_token %}
@@ -18,7 +20,9 @@
                 </form>
                 </div>
             </div>
-            <div class="font-weight-light mt-1 text-center">Not registered ? Do it <a href="#">now!</a></div>
+            <div class="font-weight-light mt-1 text-center">
+                Not registered yet? Do it <a href="{% url 'register' %}">now</a>!
+            </div>
         </div>
     </div>
 {% endblock %}

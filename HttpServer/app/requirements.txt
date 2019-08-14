@@ -1,4 +1,5 @@
 django
 django-extensions
-django-bootstrap4
+beautifulsoup4
+git+https://github.com/zostera/django-bootstrap4.git#egg=django-bootstrap4
 docker

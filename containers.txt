@@ -5,6 +5,9 @@ HTTP Server:
 - pip3
 - python3
 - Django
+- django-extensions
+- django-bootstrap4
+- docker-py
 
 GameContainer:
 - git

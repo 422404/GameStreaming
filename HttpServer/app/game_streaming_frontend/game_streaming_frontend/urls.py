@@ -19,8 +19,9 @@ from django.urls import path
 from game_streaming_frontend import views
 
 urlpatterns = [
+    path('', views.index, name='index'),
     path('admin/', admin.site.urls),
     path('login/', auth_views.LoginView.as_view(template_name='game_streaming_frontend/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    path('', views.index, name='index'),
+    path('register/', views.register, name='register'),
 ]

@@ -35,6 +35,7 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 APPEND_SLASH = True
 
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 # Application definition
 
