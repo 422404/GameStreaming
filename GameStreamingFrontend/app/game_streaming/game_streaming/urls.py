@@ -20,7 +20,8 @@ from game_streaming import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('games', views.game_list, name='game_list'),
+    path('market', views.market, name='market'),
+    path('user/library', views.user_library, name='user_library'),
     path('admin/', admin.site.urls),
     path('login/', auth_views.LoginView.as_view(template_name='game_streaming/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),

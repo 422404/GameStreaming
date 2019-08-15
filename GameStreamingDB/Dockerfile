@@ -1,0 +1,7 @@
+FROM postgres:12-alpine
+
+EXPOSE 5432
+
+ENV POSTGRES_USER=root
+ENV POSTGRES_PASSWORD=root
+ENV POSTGRES_DB=game-streaming

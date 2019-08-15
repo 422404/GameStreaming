@@ -1,6 +1,10 @@
 {% load bootstrap4 %}
 {% load static %}
 
+{% url 'user_library' as user_library_url %}
+{% url 'market' as market_url %}
+{% url 'login' as login_url %}
+
 <!DOCTYPE html>
 <html lang="en_us">
     <head>
@@ -16,17 +20,27 @@
     <body>
         {% block header %}
             <header class="page-header">
-                <nav class="navbar navbar-expand navbar-dark bg-dark">
-                    <a class="navbar-brand text-monospace" href="/">Game::Streaming</a>
-                    {% if request.user.is_authenticated %}
-                        <ul class="navbar-nav">
+                <nav class="navbar navbar-expand-md pl-0 navbar-dark bg-dark">
+                    <button class="navbar-toggler ml-3 order-1" type="button" data-toggle="collapse" data-target="#navbar-collapsing-content" aria-controls="navbar-collapsing-content" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <a class="navbar-brand text-monospace ml-3 mr-auto order-2" href="/">Game::Streaming</a>
+
+                    <div class="collapse navbar-collapse ml-3 order-4 order-md-3" id="navbar-collapsing-content">
+                        <ul class="navbar-nav my-3 my-md-0">
+                            {% if request.user.is_authenticated %}
+                                <li class="nav-item">
+                                    <a class="nav-link {% if request.get_full_path == user_library_url %}active{% endif %}" href="{{user_library_url}}">My games</a>
+                                </li>
+                            {% endif %}
                             <li class="nav-item">
-                                <a class="nav-link" href="#">My games</a>
+                                <a class="nav-link {% if request.get_full_path == market_url %}active{% endif %}" href="{{market_url}}">Market</a>
                             </li>
                         </ul>
-                    {% endif %}
-                    {% if request.get_full_path != '/login/' %}
-                        <ul class="navbar-nav ml-auto">
+                    </div>
+
+                    {% if request.get_full_path != login_url %}
+                        <ul class="navbar-nav ml-auto order-3 order-md-4">
                             {% if user.is_authenticated %}
                                 <li class="nav-item dropdown">
                                     <button class="btn btn-secondary dropdown-toggle" type="button"
@@ -36,7 +50,7 @@
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-login-dropdown-button">
                                         {% if request.user.is_staff %}
-                                            <a class="dropdown-item" href="{% url 'admin:index' %}">Admin Site</a>
+                                            <a class="dropdown-item" href="{% url 'admin:login' %}">Admin Site</a>
                                             <div class="dropdown-divider"></div>
                                         {% endif %}
                                         <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
@@ -44,7 +58,7 @@
                                 </li>
                             {% else %}
                                 <li class="nav-item">
-                                    <a class="btn btn-primary" href="{% url 'login' %}">Log In</a>
+                                    <a class="btn btn-primary" href="{{login_url}}">Log In</a>
                                 </li>
                             {% endif %}
                         </ul>

@@ -8,10 +8,12 @@
 
 {% block content %}
     <div class="d-flex flex-row flex-wrap justify-content-center container mt-5">
-        {% for game in games %}
-            {% if not game.is_hidden %}
-                {% include 'game_streaming/game_cover.html' %}
-            {% endif %}
+        {% for user_game in games %}
+            {% with game=user_game.game %}
+                {% if not game.is_hidden %}
+                    {% include 'game_streaming/game_cover_library.html' %}
+                {% endif %}
+            {% endwith %}
         {% endfor %}
     </div>
 {% endblock %}

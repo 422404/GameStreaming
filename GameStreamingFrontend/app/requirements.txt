@@ -3,4 +3,5 @@ django-extensions
 beautifulsoup4
 git+https://github.com/zostera/django-bootstrap4.git#egg=django-bootstrap4
 django-markdownify
+psycopg2-binary
 docker

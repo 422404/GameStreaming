@@ -1,0 +1,17 @@
+{% extends 'game_streaming/base.html' %}
+
+{% load static %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'game_streaming/css/games.css' %}" />
+{% endblock %}
+
+{% block content %}
+    <div class="d-flex flex-row flex-wrap justify-content-center container mt-5">
+        {% for game in games %}
+            {% if not game.is_hidden and game.is_available  %}
+                {% include 'game_streaming/game_cover.html' %}
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

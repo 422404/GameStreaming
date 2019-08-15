@@ -37,6 +37,14 @@ APPEND_SLASH = True
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
+# For bleach in markdownify
+# Added <p> and <br /> tags for paragraphs
+MARKDOWNIFY_WHITELIST_TAGS = [
+    'a', 'abbr', 'acronym', 'b', 'blockquote', 'code', 'em', 'i',
+    'li', 'ol', 'strong', 'ul', 'p', 'br', 'h1', 'h2', 'h3', 'h4',
+    'h5', 'h6'
+]
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -88,8 +96,12 @@ WSGI_APPLICATION = 'game_streaming.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'game-streaming',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': 'game-streaming-db',
+        'PORT': 5432 # default postgres port
     }
 }
 

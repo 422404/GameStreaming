@@ -1,19 +1,26 @@
 .game-cover {
     width: 18rem;
     height: 25rem;
-    position: relative;
     background-size: cover;
     background-position-x: center;
 }
 
 .game-details {
-    position: absolute;
-    bottom: 0px;
     height: 100%;
+    opacity: 0;
     visibility: hidden;
     background-color: rgba(0, 0, 0, 0.2);
 }
 
-.game-cover:hover > .game-details {
+.game-cover:hover .game-details {
+    opacity: 1;
     visibility: visible;
+    transition-duration: 300ms;
+    transition-property: opacity;
+}
+
+.game-cover-library .game-description {
+    height: 30%;
+    position: absolute;
+    bottom: 0px;
 }
