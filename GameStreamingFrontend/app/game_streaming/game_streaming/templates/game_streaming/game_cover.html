@@ -1,0 +1,16 @@
+{% load markdownify %}
+
+<div class="m-2 shadow game-cover rounded" style="background-image: url({{game.image_cover}})">
+    <div class="game-details">
+        <div class="d-flex justify-content-center align-items-center" style="height: 40%">
+            {% if game.is_available %}
+                <a class="btn btn-primary btn-lg" href="#">Add to library</a>
+            {% endif %}
+        </div>
+        <div class="bg-light text-dark p-3 game-description" style="height: 60%">
+            <h5 class="card-title">{{game.name}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{game.publisher}}, {{game.editor}}</h6>
+            <div class="card-text">{{game.description|markdownify}}</div>
+        </div>
+    </div>
+</div>

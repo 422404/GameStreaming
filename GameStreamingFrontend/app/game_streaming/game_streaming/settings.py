@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bootstrap4',
     'django_extensions',
+    'markdownify',
     'game_streaming',
 ]
 

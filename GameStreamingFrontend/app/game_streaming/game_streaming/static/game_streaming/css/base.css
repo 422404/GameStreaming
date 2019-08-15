@@ -19,3 +19,8 @@ body {
     height: 2em;
     font-size: 1em;
 }
+
+.index-message {
+    background-image: url(https://minecraftwallpapers.files.wordpress.com/2015/05/jrp80jv.jpg);
+    background-size: cover;
+}
