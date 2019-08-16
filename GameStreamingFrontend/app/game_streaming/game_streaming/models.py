@@ -1,10 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import RegexValidator
 
 # python3 manage.py makemigrations game_streaming
 
+game_id_validator = RegexValidator(r'\w+', "The only available chars are: a-z, A-Z, 0-9 and '_'.")
+
 class Game(models.Model):
-    id = models.CharField('Game ID', max_length=20, primary_key=True)
+    id = models.CharField('Game ID', max_length=20, primary_key=True, validators=[game_id_validator])
     name = models.CharField('The name of the game', max_length=80)
     description_short = models.TextField('Short description of the game', max_length=120, blank=True)
     description = models.TextField('Description of the game', max_length=500, blank=True)

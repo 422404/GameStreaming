@@ -3,8 +3,22 @@
 <div class="card border-0 m-2 shadow game-cover rounded" style="background-image: url({{game.image_cover}})">
     <div class="rounded game-details">
         <div class="d-flex justify-content-center align-items-center" style="height: 40%">
-            {% if game.is_available and request.user.is_authenticated %}
-                <a class="btn btn-primary btn-lg" href="#">Add to library</a>
+            {% if request.user.is_authenticated %}
+                {% if game.is_available %}
+                    {% if not game.id in owned_games_ids %}
+                        <a class="btn btn-primary btn-lg" href="{% url 'user_library_add_game' game_id=game.id %}">
+                            Add to library
+                        </a>
+                    {% else %}
+                        <a class="btn btn-primary btn-lg" href="#">
+                            Open in library
+                        </a>
+                    {% endif %}
+                {% else %}
+                    <button class="btn btn-primary btn-lg disabled" type="button">
+                        Not available
+                    </button>
+                {% endif %}
             {% endif %}
         </div>
         <div class="bg-light text-dark p-3 rounded-bottom game-description" style="height: 60%">

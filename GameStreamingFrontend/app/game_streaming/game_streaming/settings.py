@@ -45,6 +45,34 @@ MARKDOWNIFY_WHITELIST_TAGS = [
     'h5', 'h6'
 ]
 
+BOOTSTRAP4 = {
+    "css_url": {
+        "href": "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css",
+        "integrity": "sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T",
+        "crossorigin": "anonymous",
+    },
+    "javascript_url": {
+        "url": "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js",
+        "integrity": "sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM",
+        "crossorigin": "anonymous",
+    },
+    "jquery_url": {
+        "url": "https://code.jquery.com/jquery-3.3.1.min.js",
+        "integrity": "sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT",
+        "crossorigin": "anonymous",
+    },
+    "jquery_slim_url": {
+        "url": "https://code.jquery.com/jquery-3.3.1.slim.min.js",
+        "integrity": "sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo",
+        "crossorigin": "anonymous",
+    },
+    "popper_url": {
+        "url": "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js",
+        "integrity": "sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1",
+        "crossorigin": "anonymous",
+    }
+}
+
 # Application definition
 
 INSTALLED_APPS = [

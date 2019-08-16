@@ -15,14 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
-from django.urls import path
+from django.urls import path, re_path
 from game_streaming import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('market', views.market, name='market'),
-    path('user/library', views.user_library, name='user_library'),
+    path('market/', views.market, name='market'),
+    path('user/library/', views.user_library, name='user_library'),
+    re_path(r'^user/library/add/(?P<game_id>\w+)/$', views.user_library_add_game, name='user_library_add_game'),
+
+    # Administration site
     path('admin/', admin.site.urls),
+
+    # User authentication
     path('login/', auth_views.LoginView.as_view(template_name='game_streaming/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('register/', views.register, name='register'),
