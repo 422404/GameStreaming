@@ -1,6 +1,7 @@
 .vscode
-GameStreamingDB/postgres_data
 **/__pycache__
 *.pyc
 *.pyo
 *.pyd
+GameStreamingFrontend/app/game_streaming/static
+GameStreamingFrontend/app/game_streaming/db.json

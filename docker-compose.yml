@@ -1,0 +1,39 @@
+version: "3.6"
+
+services:
+    game-streaming-frontend:
+        container_name: game-streaming-frontend
+        image: game-streaming-frontend:1.0
+        build: ./GameStreamingFrontend
+        depends_on:
+            - game-streaming-db
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            - ./GameStreamingFrontend/app:/opt/app
+            - /etc/localtime:/etc/localtime:ro
+            - /etc/timezone:/etc/timezone:ro
+        ports:
+            - 8000:80
+        networks:
+            - net
+    
+    game-streaming-db:
+        container_name: game-streaming-db
+        image: game-streaming-db:1.0
+        build: ./GameStreamingDB
+        volumes:
+            # - ./GameStreamingDB/postgres_data:/var/lib/postgresql/data
+            - postgres-data:/var/lib/postgresql/data
+        ports:
+            - 5432:5432
+        networks:
+            - net
+
+
+volumes:
+    postgres-data:
+
+networks:
+    net:
+        driver: bridge
+        attachable: true
