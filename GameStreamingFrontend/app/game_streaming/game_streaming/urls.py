@@ -22,13 +22,15 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('market/', views.market, name='market'),
     path('user/library/', views.user_library, name='user_library'),
+    re_path(r'^user/library/(?P<game_id>\w+)/$', views.user_library_game, name='user_library_game'),
     re_path(r'^user/library/add/(?P<game_id>\w+)/$', views.user_library_add_game, name='user_library_add_game'),
+    re_path(r'^run/(?P<game_id>\w+)/$', views.run_game, name='run_game'),
 
     # Administration site
     path('admin/', admin.site.urls),
 
     # User authentication
-    path('login/', auth_views.LoginView.as_view(template_name='game_streaming/login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    path('register/', views.register, name='register'),
+    path('user/login/', auth_views.LoginView.as_view(template_name='game_streaming/login.html'), name='login'),
+    path('user/logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('user/register/', views.register, name='register'),
 ]

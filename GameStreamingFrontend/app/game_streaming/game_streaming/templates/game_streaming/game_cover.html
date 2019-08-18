@@ -10,7 +10,7 @@
                             Add to library
                         </a>
                     {% else %}
-                        <a class="btn btn-primary btn-lg" href="#">
+                        <a class="btn btn-primary btn-lg" href="{% url 'user_library_game' game_id=game.id %}">
                             Open in library
                         </a>
                     {% endif %}
@@ -23,7 +23,7 @@
         </div>
         <div class="bg-light text-dark p-3 rounded-bottom game-description" style="height: 60%">
             <h5 class="card-title">{{game.name}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">{{game.publisher}}, {{game.editor}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">{{game.publisher}}, {{game.developer}}</h6>
             <div class="card-text">{{game.description_short|markdownify}}</div>
         </div>
     </div>

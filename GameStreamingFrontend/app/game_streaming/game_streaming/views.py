@@ -3,7 +3,8 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from .models import Game, UserLibraryGame
+from .models import Game, UserLibraryGame, GameImage, GameContainer
+from .container import start_game_container
 
 def index(request):
     return render(request, 'game_streaming/index.html')
@@ -35,7 +36,12 @@ def market(request):
 @login_required
 def user_library(request):
     user_games = request.user.games.all()
-    return render(request, 'game_streaming/user_library.html', {'games': user_games})
+    current_containers = request.user.containers.filter(is_in_use=True)
+    current_game = None
+    if current_containers:
+        current_game = current_containers[0].image.game
+    return render(request, 'game_streaming/user_library.html',
+            {'games': user_games, 'current_game': current_game})
 
 @login_required
 def user_library_add_game(request, game_id):
@@ -47,3 +53,34 @@ def user_library_add_game(request, game_id):
     
     return redirect('user_library')
 
+@login_required
+def user_library_game(request, game_id):
+    game = get_object_or_404(Game, id=game_id)
+    if request.user.games.filter(game__id=game_id):
+        # Todo check if another game is running
+        current_containers = request.user.containers.filter(is_in_use=True, image__game=game)
+        is_current_game = not not current_containers
+        return render(request, 'game_streaming/game_details_library.html',
+                {'game': game, 'is_current_game': is_current_game})
+    else:
+        messages.error(request, '{} is not in your games.'.format(game.name))
+    
+    return redirect('user_library')
+
+@login_required
+def run_game(request, game_id):
+    game = get_object_or_404(Game, id=game_id)
+    if request.user.games.filter(game__id=game_id):
+        # Todo check if another game is running
+        container = start_game_container(game, request.user)
+        if container:
+            container.save()
+            # Todo game streaming
+            return render(request, 'game_streaming/container_info.html',
+                    {'container': container})
+        else:
+            messages.error(request, 'Error, cannot launch {}.'.format(game.name))
+    else:
+        messages.error(request, '{} is not in your games.'.format(game.name))
+    
+    return redirect('user_library')

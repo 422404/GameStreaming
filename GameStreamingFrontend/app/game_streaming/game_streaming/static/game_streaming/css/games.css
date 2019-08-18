@@ -24,3 +24,24 @@
     position: absolute;
     bottom: 0px;
 }
+
+.game-details-img {
+    position: relative;
+    height: 19rem;
+    background-size: cover;
+    background-position-y: center;
+}
+
+.game-detail-title-bar {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background-color: rgba(52, 58, 64, 0.7); /* color like .bg-dark */
+    transition-property: background-color;
+    transition-duration: 200ms;
+}
+
+.game-detail-title-bar:hover {
+    background-color: rgba(52, 58, 64, 1);
+}
