@@ -8,6 +8,7 @@ body {
     padding-bottom: calc(3rem + 2em);
     color: #333;
     overflow-x: hidden;
+    font-family: Verdana, Geneva, Tahoma, sans-serif !important;
 }
 
 .page-footer {
